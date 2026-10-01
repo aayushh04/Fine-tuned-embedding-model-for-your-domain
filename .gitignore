@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Data and model artifacts (large / regenerable)
+data/*
+!data/.gitkeep
+models/
+checkpoints/
+*.faiss
+*.safetensors
+*.bin
+
+# Tracking
+wandb/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
