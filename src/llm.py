@@ -1,6 +1,9 @@
 """Minimal chat-LLM wrapper around a local Hugging Face causal LM (no API key needed).
 
 Used for synthetic question generation (Phase 2) and answer generation (Phase 7).
+
+Note: on the GTX 1650 used for this project, fp16/bf16 matmuls are 8-10x slower than fp32 (0.17 / 0.8 vs
+1.4 TFLOPS), so everything runs in fp32 and the LLMs are kept small enough to fit in 4 GB.
 """
 from __future__ import annotations
 
@@ -11,11 +14,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 class LocalChat:
-    def __init__(self, name: str, device: str | None = None, dtype=torch.float16):
+    def __init__(self, name: str, device: str | None = None, dtype=torch.float32):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.tok = AutoTokenizer.from_pretrained(name, padding_side="left")
         self.model = AutoModelForCausalLM.from_pretrained(
-            name, torch_dtype=dtype if self.device == "cuda" else torch.float32
+            name, dtype=dtype
         ).to(self.device).eval()
 
     @torch.inference_mode()

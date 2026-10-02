@@ -6,6 +6,9 @@ Examples
 
 * Training data: filtered TRAIN questions only (val/test chunks are never seen). With hard negatives each
   example is (question, positive, negative), otherwise (question, positive).
+* Loss = MultipleNegativesRankingLoss computed with gradient caching (CachedMultipleNegativesRankingLoss):
+  mathematically the same loss over the full batch of 32, but the forward/backward pass runs in mini-batches
+  so it fits in 4 GB of GPU memory.
 * In-batch negatives come for free from MNRL; the NO_DUPLICATES batch sampler prevents the same chunk
   appearing twice in a batch (which would create false in-batch negatives).
 * Validation: IR evaluator on the VAL split (val chunks as corpus) after every epoch; the best epoch is kept.
@@ -26,11 +29,11 @@ import torch  # noqa: E402
 from datasets import Dataset  # noqa: E402
 from sentence_transformers import SentenceTransformerTrainer, SentenceTransformerTrainingArguments  # noqa: E402
 from sentence_transformers.evaluation import InformationRetrievalEvaluator  # noqa: E402
-from sentence_transformers.losses import MultipleNegativesRankingLoss  # noqa: E402
+from sentence_transformers.losses import CachedMultipleNegativesRankingLoss  # noqa: E402
 from sentence_transformers.training_args import BatchSamplers  # noqa: E402
 
 from src.data import chunks_by_id, load_chunks, load_questions  # noqa: E402
-from src.evaluate import eval_split, result_row  # noqa: E402
+from src.evaluate import eval_all, result_row, save_per_query  # noqa: E402
 from src.retrieval import load_model  # noqa: E402
 from src.utils import DEFAULT_CONFIG, append_csv_row, load_config, read_jsonl, set_seed  # noqa: E402
 
@@ -117,7 +120,8 @@ def main() -> None:
     )
     trainer = SentenceTransformerTrainer(
         model=model, args=train_args, train_dataset=train_ds,
-        loss=MultipleNegativesRankingLoss(model), evaluator=evaluator,
+        loss=CachedMultipleNegativesRankingLoss(model, mini_batch_size=tcfg["mini_batch_size"]),
+        evaluator=evaluator,
     )
     t0 = time.time()
     trainer.train()
@@ -140,12 +144,13 @@ def main() -> None:
     row = {"run": name, "tag": args.tag, "model": args.model, "hard_negatives": use_hn, "frac": args.frac,
            "seed": seed, "epochs_max": epochs, "best_epoch": best_epoch, "lr": lr, "batch_size": tcfg["batch_size"],
            "fp16": use_fp16, "train_minutes": round(minutes, 1), **info}
-    for split in ("val", "test"):
-        for corpus in ("split", "all"):
-            r = result_row(eval_split(model, chunks, qf, split, corpus, mcfg["query_prefix"]))
-            row.update({f"{split}_{corpus}_{k}": v for k, v in r.items() if k != "n_queries"})
-    r = result_row(eval_split(model, chunks, qa, "test", "split", mcfg["query_prefix"]))
-    row.update({f"test_unfiltered_{k}": v for k, v in r.items() if k != "n_queries"})
+    res = eval_all(model, chunks, {"filtered": qf, "unfiltered": qa}, mcfg["query_prefix"],
+                   settings=[("filtered", s, c) for s in ("val", "test") for c in ("split", "all")]
+                   + [("unfiltered", "test", "split")])
+    save_per_query(res, cfg["paths"]["results_dir"] / "per_query" / f"{name}.npz")
+    for (qset, split, corpus), r in res.items():
+        prefix_name = f"{split}_{corpus}" if qset == "filtered" else f"{split}_unfiltered"
+        row.update({f"{prefix_name}_{k}": v for k, v in result_row(r).items() if k != "n_queries"})
     append_csv_row(cfg["paths"]["results_dir"] / "runs.csv", row)
     print({k: v for k, v in row.items() if k.startswith("test_split") or k in ("run", "best_epoch", "train_minutes")})
 

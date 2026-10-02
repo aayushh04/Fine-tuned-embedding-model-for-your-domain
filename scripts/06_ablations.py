@@ -1,6 +1,7 @@
 """Phase 6: run the ablation grid by calling scripts/05_train.py once per configuration.
 
-Grid (every cell is repeated for each seed in training.seeds, results are reported as mean +/- std):
+Grid. The MAIN cell (bge-small, hard negatives, 100% data) is repeated for every seed in training.seeds and reported
+as mean +/- std; every other cell is a single run (first seed) to keep the total compute within budget:
   a) base vs fine-tuned          bge-small / hard negatives / 100% data   (vs the baselines)
   b) with vs without hard negs   bge-small and minilm, 100% data
   c) training-data size          bge-small / hard negatives / 25%, 50%, 100%
@@ -23,17 +24,17 @@ from src.utils import DEFAULT_CONFIG, ROOT, load_config  # noqa: E402
 
 
 def grid(seeds: list[int]) -> list[dict]:
-    cells = [  # (tag, model, hard_negatives, frac)
-        ("main", "bge-small", True, 1.0),
-        ("no_hard_negatives", "bge-small", False, 1.0),
-        ("data_size", "bge-small", True, 0.5),
-        ("data_size", "bge-small", True, 0.25),
-        ("second_model", "minilm", True, 1.0),
-        ("second_model_no_hn", "minilm", False, 1.0),
+    cells = [  # (tag, model, hard_negatives, frac, all_seeds)
+        ("main", "bge-small", True, 1.0, True),
+        ("no_hard_negatives", "bge-small", False, 1.0, False),
+        ("data_size", "bge-small", True, 0.5, False),
+        ("data_size", "bge-small", True, 0.25, False),
+        ("second_model", "minilm", True, 1.0, False),
+        ("second_model_no_hn", "minilm", False, 1.0, False),
     ]
     runs = []
-    for seed in seeds:
-        for tag, model, hn, frac in cells:
+    for tag, model, hn, frac, all_seeds in cells:
+        for seed in (seeds if all_seeds else seeds[:1]):
             name = f"{model}_{'hn' if hn else 'nohn'}_{round(frac * 100)}_s{seed}"
             runs.append({"name": name, "tag": tag, "model": model, "hn": hn, "frac": frac, "seed": seed})
     return runs

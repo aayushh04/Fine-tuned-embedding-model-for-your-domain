@@ -1,0 +1,26 @@
+| model | split | corpus | qset | n_queries | recall@1 | recall@5 | recall@10 | mrr@10 | ndcg@10 |
+|---|---|---|---|---|---|---|---|---|---|
+| minilm | val | split | filtered | 414 | 0.5 | 0.8502 | 0.9372 | 0.643 | 0.7142 |
+| minilm | val | all | filtered | 414 | 0.3623 | 0.6329 | 0.756 | 0.4807 | 0.5462 |
+| minilm | test | split | filtered | 461 | 0.5705 | 0.8872 | 0.9523 | 0.7016 | 0.7627 |
+| minilm | test | all | filtered | 461 | 0.4924 | 0.7918 | 0.872 | 0.6208 | 0.6817 |
+| minilm | val | split | unfiltered | 476 | 0.4538 | 0.7941 | 0.9034 | 0.5941 | 0.6683 |
+| minilm | val | all | unfiltered | 476 | 0.3193 | 0.5651 | 0.6828 | 0.4274 | 0.488 |
+| minilm | test | split | unfiltered | 485 | 0.5464 | 0.8598 | 0.9278 | 0.6757 | 0.737 |
+| minilm | test | all | unfiltered | 485 | 0.4701 | 0.7546 | 0.8392 | 0.5932 | 0.6528 |
+| bge-small | val | split | filtered | 414 | 0.57 | 0.9517 | 0.9903 | 0.7295 | 0.7943 |
+| bge-small | val | all | filtered | 414 | 0.43 | 0.7947 | 0.9082 | 0.5867 | 0.6642 |
+| bge-small | test | split | filtered | 461 | 0.6855 | 0.9523 | 0.9978 | 0.8022 | 0.8505 |
+| bge-small | test | all | filtered | 461 | 0.6052 | 0.9154 | 0.974 | 0.7375 | 0.7955 |
+| bge-small | val | split | unfiltered | 476 | 0.5063 | 0.8718 | 0.9349 | 0.6581 | 0.7258 |
+| bge-small | val | all | unfiltered | 476 | 0.3739 | 0.6912 | 0.7899 | 0.5103 | 0.5777 |
+| bge-small | test | split | unfiltered | 485 | 0.6536 | 0.9113 | 0.9691 | 0.7675 | 0.8169 |
+| bge-small | test | all | unfiltered | 485 | 0.5753 | 0.8701 | 0.9258 | 0.701 | 0.7562 |
+| bge-base | val | split | filtered | 414 | 0.5507 | 0.9082 | 0.9855 | 0.7074 | 0.7756 |
+| bge-base | val | all | filtered | 414 | 0.4034 | 0.7729 | 0.872 | 0.5591 | 0.6348 |
+| bge-base | test | split | filtered | 461 | 0.6616 | 0.9523 | 0.9913 | 0.788 | 0.8386 |
+| bge-base | test | all | filtered | 461 | 0.6052 | 0.9132 | 0.9761 | 0.7372 | 0.7958 |
+| bge-base | val | split | unfiltered | 476 | 0.4979 | 0.8382 | 0.9412 | 0.6493 | 0.72 |
+| bge-base | val | all | unfiltered | 476 | 0.3508 | 0.6744 | 0.771 | 0.4887 | 0.5568 |
+| bge-base | test | split | unfiltered | 485 | 0.633 | 0.9258 | 0.9732 | 0.7599 | 0.8126 |
+| bge-base | test | all | unfiltered | 485 | 0.5773 | 0.8763 | 0.9402 | 0.705 | 0.7626 |

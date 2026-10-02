@@ -1,0 +1,69 @@
+{
+  "raw": {
+    "test/claude": 510,
+    "train/qwen2.5-0.5b": 4350,
+    "val/qwen2.5-0.5b": 518
+  },
+  "dropped": {
+    "copies_passage": {
+      "test/claude": 23,
+      "train/qwen2.5-0.5b": 124,
+      "val/qwen2.5-0.5b": 12
+    },
+    "too_generic": {
+      "test/claude": 1,
+      "train/qwen2.5-0.5b": 12,
+      "val/qwen2.5-0.5b": 1
+    },
+    "refers_to_passage": {
+      "train/qwen2.5-0.5b": 4
+    },
+    "too_short": {
+      "train/qwen2.5-0.5b": 4,
+      "val/qwen2.5-0.5b": 1
+    },
+    "generic_repeated_across_chunks": {
+      "train/qwen2.5-0.5b": 5,
+      "val/qwen2.5-0.5b": 1
+    },
+    "exact_duplicate": {
+      "val/qwen2.5-0.5b": 1
+    },
+    "near_duplicate_in_chunk": {
+      "test/claude": 1,
+      "train/qwen2.5-0.5b": 230,
+      "val/qwen2.5-0.5b": 26
+    },
+    "failed_roundtrip": {
+      "test/claude": 24,
+      "train/qwen2.5-0.5b": 619,
+      "val/qwen2.5-0.5b": 62
+    }
+  },
+  "kept": {
+    "test/claude": 461,
+    "train/qwen2.5-0.5b": 3352,
+    "val/qwen2.5-0.5b": 414
+  },
+  "kept_by_qtype": {
+    "test/comparison": 86,
+    "test/factual": 210,
+    "test/how-to": 165,
+    "train/comparison": 1022,
+    "train/factual": 1208,
+    "train/how-to": 1122,
+    "val/comparison": 126,
+    "val/factual": 145,
+    "val/how-to": 143
+  },
+  "chunks_with_question": {
+    "train": 1409,
+    "val": 167,
+    "test": 391
+  },
+  "questions_per_split": {
+    "train": 3352,
+    "val": 414,
+    "test": 461
+  }
+}

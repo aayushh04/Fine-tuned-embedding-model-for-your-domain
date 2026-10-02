@@ -42,6 +42,16 @@ def main() -> None:
         t += 1
         if len(picked) == n_total:
             break
+    # test has fewer documents than n_total: take a second question (from a different chunk) in the largest docs
+    if len(picked) < n_total:
+        used_chunks = {q["positive_chunk_id"] for q in picked}
+        extra_docs = sorted(by_doc, key=lambda d: (-len(by_doc[d]), d))
+        for d in extra_docs:
+            pool = [q for q in by_doc[d] if q["positive_chunk_id"] not in used_chunks]
+            if pool and len(picked) < n_total:
+                q = rng.choice(pool)
+                picked.append(q)
+                used_chunks.add(q["positive_chunk_id"])
     rows = [{"qid": f"r{i:02d}", "question": q["question"], "qtype": q["qtype"],
              "gold_chunk_id": q["positive_chunk_id"], "gold_text": by_id[q["positive_chunk_id"]]["text"]}
             for i, q in enumerate(picked)]

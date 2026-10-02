@@ -77,11 +77,11 @@ models:
 synthetic:
   # Phase 2. Train/val questions: local LLM (no API key needed). Test questions: written by
   # Claude (data/synthetic/test_questions_claude.jsonl) so the test writer != the train writer.
-  local_llm: Qwen/Qwen2.5-1.5B-Instruct
+  local_llm: Qwen/Qwen2.5-0.5B-Instruct
   questions_per_chunk: 3
-  temperature: 0.7
-  batch_size: 8
-  max_new_tokens: 220
+  temperature: 0.6
+  batch_size: 4                  # >4 spills GPU memory on a 4 GB card and gets ~5x slower per chunk
+  max_new_tokens: 150
   filter_model: bge-small        # base model used for the round-trip check
   roundtrip_top_k: 20
   min_question_words: 5
@@ -93,17 +93,19 @@ negatives:
   mine_top_k: 50
   rank_min: 10                   # sample from ranks [rank_min, mine_top_k)
   cross_encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+  ce_shortlist: 8                # candidates per question that get cross-encoder verification
   ce_margin: 1.0                 # drop candidate if CE(q, neg) > CE(q, pos) - margin
   max_pos_similarity: 0.90       # drop candidate if cos(pos, neg) is above this
 
 training:
   # Phase 5
   lr: 2.0e-5
-  epochs: 4
-  batch_size: 32
+  epochs: 3
+  batch_size: 32                 # effective batch (in-batch negatives are drawn from all 32)
+  mini_batch_size: 8             # GradCache chunk size: same gradients, fits in 4 GB
   warmup_ratio: 0.1
   weight_decay: 0.01
-  fp16: true
+  fp16: false                    # GTX 1650: fp16 matmul is ~8x slower than fp32 here (measured), so train in fp32
   seeds: [42, 43, 44]
 
 forgetting:
@@ -113,7 +115,7 @@ forgetting:
 rag:
   n_questions: 50
   top_k: 5
-  generator: Qwen/Qwen2.5-1.5B-Instruct
+  generator: Qwen/Qwen2.5-0.5B-Instruct
   max_new_tokens: 200
 
 split:

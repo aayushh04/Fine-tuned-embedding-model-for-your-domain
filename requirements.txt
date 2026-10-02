@@ -1,6 +1,21 @@
-# Phase 1
-pyyaml>=6.0
-requests>=2.31
-tokenizers>=0.20
-huggingface_hub>=0.25
-tqdm>=4.66
+# Tested with Python 3.11 on Windows 11 (GTX 1650, 4 GB). Pinned to the versions the results were produced with.
+#
+# torch: install the CUDA build that matches your GPU, e.g.
+#   pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+# (CPU-only works too, just slower.)
+torch==2.5.1
+sentence-transformers==6.1.0
+transformers==5.18.0
+tokenizers==0.23.2
+datasets==5.0.1
+accelerate==1.15.0
+faiss-cpu==1.15.1
+numpy==2.4.6
+pandas==3.0.6
+scikit-learn==1.9.1
+matplotlib==3.11.2
+gradio==6.29.0
+huggingface_hub
+pyyaml==6.0.3
+requests==2.34.2
+tqdm==4.70.1

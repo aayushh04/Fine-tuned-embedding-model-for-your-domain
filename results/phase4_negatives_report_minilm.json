@@ -1,0 +1,14 @@
+{
+  "model": "minilm",
+  "n_triplets": 3352,
+  "n_hard": 3332,
+  "n_fallback": 20,
+  "candidates_dropped": {
+    "adjacent_to_positive": 1722,
+    "is_positive": 491,
+    "too_similar_to_positive": 449,
+    "likely_false_negative_by_cross_encoder": 2196
+  },
+  "mean_ce_margin_pos_minus_neg": 6.881,
+  "mean_candidates_per_question_after_geometry_filters": 8.0
+}

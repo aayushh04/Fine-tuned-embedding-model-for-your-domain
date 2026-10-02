@@ -117,7 +117,7 @@ def main() -> None:
                 for qtype, q in parse_questions(reply):
                     f.write(json.dumps({"chunk_id": c["chunk_id"], "doc_id": c["doc_id"],
                                         "split": c["split"], "question": q, "qtype": qtype,
-                                        "writer": "qwen2.5-1.5b"}, ensure_ascii=False) + "\n")
+                                        "writer": "qwen2.5-0.5b"}, ensure_ascii=False) + "\n")
             f.flush()
             torch.cuda.empty_cache()
 

@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.data import load_chunks, load_questions  # noqa: E402
-from src.evaluate import eval_split, result_row  # noqa: E402
+from src.evaluate import eval_all, result_row, save_per_query  # noqa: E402
 from src.retrieval import load_model  # noqa: E402
 from src.utils import DEFAULT_CONFIG, load_config, set_seed  # noqa: E402
 
@@ -42,13 +42,12 @@ def main() -> None:
     for name in args.models or list(cfg["models"]):
         mcfg = cfg["models"][name]
         model = load_model(mcfg)
-        for qset, questions in qsets.items():
-            for split in ("val", "test"):
-                for corpus in ("split", "all"):
-                    res = eval_split(model, chunks, questions, split, corpus, mcfg["query_prefix"])
-                    rows.append({"model": name, "split": split, "corpus": corpus, "qset": qset,
-                                 **result_row(res, with_ci=(split == "test"))})
-                    print(rows[-1])
+        results = eval_all(model, chunks, qsets, mcfg["query_prefix"])
+        save_per_query(results, cfg["paths"]["results_dir"] / "per_query" / f"base_{name}.npz")
+        for (qset, split, corpus), res in results.items():
+            rows.append({"model": name, "split": split, "corpus": corpus, "qset": qset,
+                         **result_row(res, with_ci=(split == "test"))})
+            print(rows[-1])
         del model
 
     from src.utils import append_csv_row

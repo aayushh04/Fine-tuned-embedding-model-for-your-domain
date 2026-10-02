@@ -4,10 +4,12 @@ For each train question:
   1. retrieve the top-K over TRAIN chunks only (never val/test chunks) with the base model
   2. candidates = ranks [rank_min, K), minus the positive, minus chunks adjacent to the positive in the
      same document (they overlap with it), minus near-copies of the positive (cos(pos, cand) > max_pos_similarity)
-  3. false-negative guard: a cross-encoder scores (question, candidate) and (question, positive); a candidate
+  3. shortlist: a seeded random sample of at most `ce_shortlist` of the remaining candidates (keeps the
+     cross-encoder cost bounded)
+  4. false-negative guard: a cross-encoder scores (question, candidate) and (question, positive); a candidate
      is dropped if CE(q, cand) > CE(q, pos) - ce_margin, i.e. it looks like it answers the question about as
      well as the real positive
-  4. sample one surviving candidate (seeded). If none survives, fall back to a random train chunk from a
+  5. sample one surviving candidate (seeded). If none survives, fall back to a random train chunk from a
      different document (flagged neg_kind="fallback") so every question yields a triplet.
 
 Output: data/triplets/<model>_triplets.jsonl and results/phase4_negatives_report.json
@@ -76,6 +78,8 @@ def main() -> None:
                 reasons["too_similar_to_positive"] += 1
             else:
                 keep.append(j)
+        if len(keep) > ncfg["ce_shortlist"]:
+            keep = rng.sample(keep, ncfg["ce_shortlist"])
         candidates.append(keep)
 
     # cross-encoder verification

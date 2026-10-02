@@ -1,0 +1,14 @@
+{
+  "model": "bge-small",
+  "n_triplets": 3352,
+  "n_hard": 3333,
+  "n_fallback": 19,
+  "candidates_dropped": {
+    "adjacent_to_positive": 1553,
+    "is_positive": 209,
+    "too_similar_to_positive": 2199,
+    "likely_false_negative_by_cross_encoder": 2312
+  },
+  "mean_ce_margin_pos_minus_neg": 6.569,
+  "mean_candidates_per_question_after_geometry_filters": 8.0
+}
