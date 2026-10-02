@@ -1,0 +1,50 @@
+{
+  "n_chunks": 2046,
+  "n_docs": 172,
+  "duplicates_removed": 99,
+  "tokens": {
+    "min": 63,
+    "p5": 92,
+    "median": 247.0,
+    "p95": 319,
+    "max": 342,
+    "total": 460496,
+    "over_chunk_size": 0
+  },
+  "per_split": {
+    "train": {
+      "docs": 111,
+      "chunks": 1449
+    },
+    "val": {
+      "docs": 24,
+      "chunks": 172
+    },
+    "test": {
+      "docs": 37,
+      "chunks": 425
+    }
+  },
+  "per_source": {
+    "fastapi": {
+      "val": 100,
+      "train": 787,
+      "test": 224
+    },
+    "pydantic": {
+      "train": 542,
+      "val": 59,
+      "test": 168
+    },
+    "starlette": {
+      "test": 33,
+      "train": 120,
+      "val": 13
+    }
+  },
+  "leakage": {
+    "docs_in_multiple_splits": 0,
+    "cross_split_duplicate_groups": 0,
+    "within_split_duplicate_groups": 0
+  }
+}

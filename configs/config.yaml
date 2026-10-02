@@ -1,0 +1,65 @@
+# Single source of truth for the whole pipeline. Paths are relative to the repo root.
+seed: 42
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  results_dir: results
+
+# Domain corpus: the Python web-API stack (FastAPI + the libraries it is built on).
+# Each source is pinned to a release tag so the corpus is reproducible.
+corpus:
+  sources:
+    - name: fastapi
+      label: FastAPI
+      repo: fastapi/fastapi
+      ref: "0.115.12"
+      docs_dir: docs/en/docs
+      include_base: docs/en   # code includes ({* ../../docs_src/x.py *}) resolve from here
+      exclude:
+        - release-notes.md
+        - reference/**
+        - contributing.md
+        - management*.md
+        - fastapi-people.md
+        - help-fastapi.md
+        - external-links.md
+        - newsletter.md
+        - about/**
+        - resources/**
+        - learn/**
+    - name: pydantic
+      label: Pydantic
+      repo: pydantic/pydantic
+      ref: v2.11.7
+      docs_dir: docs
+      exclude:
+        - api/**
+        - contributing.md
+        - help_with_pydantic.md
+        - pydantic_people.md
+    - name: starlette
+      label: Starlette
+      repo: encode/starlette
+      ref: "0.46.2"
+      docs_dir: docs
+      exclude:
+        - release-notes.md
+        - sponsorship.md
+        - contributing.md
+
+chunking:
+  # Tokens are counted with the base embedding model's tokenizer, so "300 tokens" means
+  # the same thing the model sees (bge-small truncates at 512).
+  tokenizer: BAAI/bge-small-en-v1.5
+  chunk_size: 350      # max tokens per chunk (including the breadcrumb line)
+  overlap: 50          # max tokens of trailing blocks carried into the next chunk
+  min_tokens: 60       # chunks shorter than this are merged or dropped
+
+split:
+  train: 0.7
+  val: 0.1
+  test: 0.2
+  # Docs with more chunks than this always go to train, so one long reference page
+  # (e.g. Pydantic's 100-chunk validation-error catalog) cannot dominate val/test.
+  max_eval_doc_chunks: 40
