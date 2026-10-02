@@ -20,6 +20,22 @@ def load_config(path: str | Path = DEFAULT_CONFIG) -> dict:
     return cfg
 
 
+def append_csv_row(path: Path, row: dict) -> None:
+    """Append one run to a CSV log (header written on first use; new columns are added)."""
+    import csv
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rows = []
+    if path.exists():
+        with open(path, newline="", encoding="utf-8") as f:
+            rows = list(csv.DictReader(f))
+    rows.append(row)
+    fields = list(dict.fromkeys(k for r in rows for k in r))
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(rows)
+
+
 def set_seed(seed: int) -> None:
     """Seed every RNG we use. numpy/torch are seeded too once they are installed."""
     random.seed(seed)

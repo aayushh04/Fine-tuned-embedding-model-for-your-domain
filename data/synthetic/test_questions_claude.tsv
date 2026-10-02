@@ -1,0 +1,510 @@
+t000|c|Why might I need async test functions when my FastAPI backend writes to an async database library?
+t000|f|Is it possible to test FastAPI endpoints with asynchronous test functions rather than only synchronous ones?
+t001|h|How can I mark pytest test functions so they run asynchronously when testing a FastAPI app?
+t001|f|Which plugin lets pytest call async test functions in a FastAPI project?
+t002|c|Why does the FastAPI TestClient stop working inside async def test functions?
+t002|f|What library is TestClient built on that I can use directly for asynchronous API tests?
+t003|h|How do I write an async pytest test that calls a FastAPI route using httpx AsyncClient with ASGITransport?
+t003|f|What file layout does the FastAPI async testing example use for main.py and test_main.py?
+t004|f|What does the anyio marker tell pytest to do with a FastAPI test function?
+t004|h|Which command do I run to execute async FastAPI tests?
+t005|f|In an async FastAPI test, what replaces the synchronous client.get call from TestClient?
+t005|h|How can I make lifespan events run when testing a FastAPI app with httpx AsyncClient?
+t006|h|How do I avoid the RuntimeError saying a task is attached to a different loop when using MongoDB Motor in async FastAPI tests?
+t006|f|Can I await other async functions besides API requests inside an async FastAPI test?
+t007|f|What is root_path in FastAPI and which specification defines it?
+t007|h|How do I configure a FastAPI app when Traefik or Nginx adds a path prefix that the app never sees?
+t008|f|What does a proxy with a stripped path prefix mean for a FastAPI app declared at /app but served under /api/v1?
+t008|c|Why can my FastAPI code keep declaring paths without the /api/v1 prefix when a proxy strips it?
+t009|f|Why does the interactive docs UI fail to load the OpenAPI schema when FastAPI sits behind a prefix-adding proxy?
+t009|f|What does it mean when a server listens on the address 0.0.0.0?
+t010|h|How do I tell the fastapi command line what root path my app is served under?
+t010|f|What servers entry must the OpenAPI schema contain so the docs UI knows the API lives behind a proxy prefix?
+t011|h|How can I read the current root_path inside a FastAPI path operation?
+t011|f|Does Hypercorn offer the same root path command line option as Uvicorn?
+t012|h|How can I set the root path in code instead of using a command line flag when creating a FastAPI app?
+t012|c|Is giving root_path to the FastAPI constructor equivalent to the --root-path option of Uvicorn?
+t013|c|Why does Uvicorn not expect requests at /api/v1/app even though the root path is set to /api/v1?
+t013|f|Who is responsible for adding the path prefix on top when the app server only serves /app?
+t014|c|How does request forwarding differ between a proxy with a stripped path prefix and one without?
+t014|f|If a proxy does not strip the prefix and the browser requests /api/v1/app, what path does the Uvicorn server receive?
+t015|h|How do I set up Traefik locally with a traefik.toml file to try out FastAPI behind a proxy?
+t015|f|Why does the Traefik example listen on port 9999 instead of port 80?
+t016|h|How do I configure a stripPrefix middleware for the /api/v1 prefix in a Traefik routes file?
+t016|f|Which part of the Traefik routes configuration points requests at the backend running on port 8000?
+t017|h|Which commands start Traefik and then launch the FastAPI app with the root path option?
+t018|f|Why does the response report a root path of /api/v1 even when I open Uvicorn directly at port 8000?
+t018|c|Which URL should end users use and which one is only meant for the proxy when running behind Traefik?
+t019|f|Why does the docs page work through the proxy prefix but fail when opened on the Uvicorn port directly?
+t019|f|How does FastAPI use root_path to make the generated docs UI work behind a proxy?
+t020|h|How can one docs UI interact with both a staging and a production environment in FastAPI?
+t020|f|Where does FastAPI place the root_path server when I also pass my own list of servers?
+t021|f|What does the automatically generated server entry in the OpenAPI schema contain when root_path is /api/v1?
+t021|f|How does the docs UI decide which server to send requests to?
+t022|h|Which parameter turns off the automatic OpenAPI server that FastAPI derives from root_path?
+t023|h|Can I mount a sub-application in FastAPI while the app also runs behind a proxy with root_path?
+t024|f|What is a callback in the context of an API that triggers requests to an external API written by someone else?
+t024|h|How can I document what an external API should look like when my FastAPI app calls it back?
+t025|f|In the invoice example, what does the API do after an external developer creates an invoice with a POST request?
+t025|f|Which fields does an invoice have in the FastAPI callbacks tutorial?
+t026|f|What does the path operation in the plain invoice app receive before any callback is added?
+t027|h|How do I declare a callback router that posts an InvoiceEvent to the customer-supplied URL in FastAPI?
+t028|f|Which type is used for the callback_url query parameter in the invoice example?
+t028|h|Which argument of the path operation decorator is used to attach callback documentation to an endpoint?
+t029|c|Does the OpenAPI callback tutorial actually implement the outgoing request, or only document it?
+t029|f|Where does the documentation about the external callback API show up for developers?
+t030|h|How should I think about writing the code that documents an external API's expected path operations?
+t030|f|What is the first object I create when writing FastAPI callback documentation?
+t031|f|What should the callback path operation declare for its body and response model?
+t032|c|How does a callback path operation differ from a normal path operation, given that its code is never executed?
+t033|h|What URL and JSON body will the API send to the external service when the callback path is built from callback_url and the invoice id?
+t034|f|Which two pieces of the original request are combined to build the callback URL in the invoice example?
+t034|h|Should I pass the router itself or its routes list to the callbacks parameter of the decorator?
+t035|f|Where in the interactive docs can I see how the external API should look when I use callbacks?
+t036|h|How do I set a custom OpenAPI operationId for a single path operation in FastAPI?
+t036|h|How can I use my function names as operationIds across all routes?
+t037|c|Why must path operation function names be unique if I reuse them as OpenAPI operation IDs?
+t037|f|When should the function that rewrites operation IDs be called relative to adding routes?
+t038|h|How do I hide a single endpoint from the generated OpenAPI schema and the interactive docs?
+t039|h|How can I stop FastAPI from showing the entire docstring of a path operation in the OpenAPI description?
+t039|f|What does the form feed escape character do in a path operation docstring?
+t040|f|Which other tools can still read the part of the docstring that comes after the form feed character?
+t041|f|Where can I read about declaring more responses than the main response_model and status code for a path operation?
+t042|f|What is the Operation Object in the OpenAPI specification?
+t042|h|Which parameter lets me extend the OpenAPI schema of one path operation?
+t043|h|How do I add a custom OpenAPI extension like an x- field to a single endpoint?
+t044|f|Where can I see my OpenAPI extension in the generated openapi.json?
+t044|f|How does the dictionary in openapi_extra combine with the schema FastAPI generates automatically?
+t045|h|How can I describe a request body in OpenAPI when I parse the request with my own code instead of Pydantic?
+t046|h|How do I declare a required JSON request body schema through openapi_extra without declaring a Pydantic model?
+t047|f|In the custom reader example, how is the request body read when no Pydantic model is declared?
+t047|h|How can I declare a request content type like YAML in a FastAPI path operation's OpenAPI?
+t048|h|How do I parse a YAML request body and validate it manually with a Pydantic model in FastAPI?
+t049|f|What is the Pydantic v2 method for getting a model's JSON Schema, and what was it called in version 1?
+t049|c|Why does FastAPI not try to parse the payload as JSON when the endpoint reads the request body as bytes?
+t050|h|How can I validate a raw YAML request body with a Pydantic model and return a 422 when the YAML is invalid in FastAPI?
+t051|f|Which Pydantic v2 method replaces parse_obj for validating an object?
+t052|h|How can I return 201 Created instead of the default 200 for a FastAPI endpoint while still using a response_model?
+t052|f|When should I use a Response parameter to change the status code of a path operation?
+t053|h|How do I set the status code inside a path operation function using a temporal Response object?
+t053|f|What does FastAPI take from the temporal Response parameter when it builds the final response?
+t054|h|How do I set a custom header on the response from a FastAPI path operation without returning a Response directly?
+t054|f|Can I set headers and cookies through a Response parameter inside a dependency?
+t055|h|How do I return a JSONResponse with extra headers in FastAPI?
+t055|c|What is the relationship between fastapi.responses and starlette.responses?
+t056|h|How can browser clients read my custom X- headers across origins in a FastAPI app?
+t056|f|Which CORS parameter exposes custom response headers to browser JavaScript?
+t057|h|Which package do I need to install before using WebSockets with FastAPI?
+t058|c|Why does the WebSocket documentation use a plain HTML page inside a Python string, and would that be suitable for production?
+t060|f|What does the WebSocket endpoint in the chat example send back after receiving a text message?
+t062|f|Is the WebSocket class in FastAPI the same one that Starlette provides?
+t063|h|How do I wait for incoming messages and send replies in a FastAPI WebSocket route?
+t064|f|What kinds of data can a FastAPI WebSocket receive and send?
+t065|h|How do I run the WebSocket chat example and try it in a browser?
+t065|f|Do multiple messages in the chat example share a single WebSocket connection?
+t066|f|Which FastAPI parameter helpers such as Depends, Cookie or Query can be used in WebSocket endpoints?
+t069|h|How do I make a WebSocket reject a connection when neither a session cookie nor a token is given?
+t070|c|Why should a WebSocket endpoint raise WebSocketException rather than HTTPException?
+t070|f|Where do the valid closing codes for a WebSocketException come from?
+t071|f|Which exception is raised when a client closes the WebSocket while the server is awaiting receive_text?
+t073|h|How do I write a ConnectionManager class that keeps active WebSocket connections and broadcasts messages in FastAPI?
+t074|h|How do I notify the remaining chat clients when one of them disconnects from a FastAPI WebSocket?
+t075|c|What are the limitations of keeping connected WebSockets in an in-memory list inside a single FastAPI process?
+t075|f|Which library supports WebSocket broadcasting backed by Redis or PostgreSQL for FastAPI?
+t076|c|When should I declare path operation functions with async def versus plain def depending on the library I call?
+t076|f|Where is it allowed to use the await keyword in Python?
+t077|c|What should I do if I am unsure whether to write my endpoint with async def or def?
+t077|f|Can I mix def and async def path operation functions in the same FastAPI application?
+t078|f|Which three concepts does the FastAPI documentation break down to explain asynchronous code in modern Python?
+t079|f|What does asynchronous code mean in terms of a program waiting for something slow while doing other work?
+t080|f|What are I/O bound operations and which kinds of waiting do they involve?
+t080|c|Why is asynchronous code called asynchronous, as opposed to synchronous or sequential?
+t081|c|What is the difference between concurrency and parallelism as explained with the fast food story?
+t082|f|In the concurrent burgers story, what does the person do while waiting for the order after paying?
+t083|f|Why does the person in the burger story not jump up the moment their number appears on the display?
+t084|c|How does the parallel burgers scenario with 8 cashier-cooks differ from the concurrent one?
+t085|f|Why is waiting in front of the counter in the parallel burgers story described as synchronous work?
+t086|f|How does the bank with many cashiers and a long line illustrate parallel processing?
+t087|c|Why does asynchronous code make sense for web APIs with many slow client connections?
+t087|f|How does FastAPI performance compare with NodeJS frameworks and Go?
+t088|c|When is parallelism a better fit than concurrency, as shown by the dirty house cleaning story?
+t089|f|Which kinds of workloads are CPU bound, such as image processing or machine learning?
+t090|f|Why is FastAPI a good match for machine learning web APIs?
+t091|h|How do I write a coroutine function and wait for its result with await in Python?
+t092|h|What happens if I call an async def function without await, and how do I use it inside an endpoint?
+t093|f|If await only works inside async def functions, how is the very first async function in a FastAPI app called?
+t093|f|Which library are Starlette and FastAPI built on that makes them compatible with asyncio and Trio?
+t094|f|What is Asyncer and when is it useful for mixing async and blocking code?
+t095|c|How do async and await compare with older approaches such as threads, Gevent or JavaScript callbacks?
+t096|f|What is a coroutine in Python?
+t097|f|What gives FastAPI its high performance according to the concurrency conclusion?
+t098|c|What happens when a path operation function is declared with plain def instead of async def?
+t099|f|How does FastAPI run dependencies that are declared with normal def?
+t099|c|Do utility functions that I call directly need to be async just because they are used inside a FastAPI endpoint?
+t100|h|What does a minimal Dockerfile for a FastAPI application look like?
+t100|h|Which flag should I add to the fastapi run command when the container sits behind Nginx or Traefik?
+t101|f|Why are Linux containers lighter than virtual machines?
+t102|c|What is the difference between a container image and a container?
+t103|c|How is a container image comparable to a program file and a container to a process?
+t104|f|Where can I find ready-made official container images for Python or databases like PostgreSQL?
+t105|f|What happens to a container when its main process stops?
+t105|f|Can a single container run more than one process?
+t106|f|In which situations should I build a Docker image for FastAPI from scratch on the official Python image?
+t106|h|How should package requirements for a FastAPI Docker image be listed in requirements.txt?
+t107|h|What directory structure and files do I create for the FastAPI code before writing the Dockerfile?
+t108|h|Why should only requirements.txt be copied into the image before the rest of the code in a FastAPI Dockerfile?
+t108|h|How do I set the working directory and base image in a Dockerfile for a FastAPI app?
+t109|f|What does the --no-cache-dir option of pip do when installing packages inside a Docker build?
+t109|c|Is the pip --no-cache-dir option related to the Docker build cache?
+t110|c|Why should the application code be copied near the end of a Dockerfile?
+t110|f|Why must CMD be written in exec form with a list of strings for a FastAPI container?
+t111|f|What problem does the shell form of CMD cause for shutdown and lifespan events?
+t111|h|Which option do I add when running the container behind a TLS termination proxy like Nginx or Traefik?
+t112|h|How should the Dockerfile CMD look when it needs the --proxy-headers option?
+t112|f|How do Docker layers and the internal cache work when building an image incrementally?
+t113|c|Why does copying only the dependency file first save minutes when rebuilding a container image?
+t114|h|Which command builds a Docker image for my FastAPI project and tags it as myimage?
+t115|h|At which URL can I check the FastAPI app running in my Docker container?
+t116|f|Which URL shows the Swagger UI documentation when the container is running?
+t117|f|Where can I find the alternative ReDoc documentation for a FastAPI app running in Docker?
+t118|h|How do I adjust the Dockerfile when my FastAPI app is a single main.py without an app directory?
+t119|f|Which deployment concepts should I cover when running FastAPI in containers?
+t120|c|Who normally handles HTTPS for a FastAPI container, and how can Traefik help?
+t121|h|How do I make a Docker container start on boot and restart after failures?
+t121|f|Which tools can be in charge of starting and running my FastAPI container?
+t122|c|Why would I run a single Uvicorn process in each container on Kubernetes instead of using workers?
+t123|f|What is a load balancer in a container setup, and how does it relate to a TLS termination proxy?
+t124|f|How do identical replicated containers share incoming requests behind a load balancer?
+t125|c|Why shouldn't I use the --workers option inside containers when replication is handled by the cluster?
+t126|h|How do I run several worker processes in one container using the --workers option in the Dockerfile?
+t126|f|When would a process manager inside a single container make sense for a simple app?
+t127|c|When might I want one container running several workers on a single server with Docker Compose?
+t128|c|How does running one process per container make memory limits easier to set in Kubernetes?
+t129|h|How should I run previous steps like database migrations before starting the app when using multiple containers?
+t129|f|What is an Init Container in Kubernetes used for with FastAPI?
+t130|f|Why is the tiangolo uvicorn-gunicorn-fastapi Docker image deprecated?
+t130|c|Why is there no longer a reason to use Gunicorn with Uvicorn workers for a FastAPI image?
+t131|f|In which ways can a FastAPI container image be deployed?
+t132|h|How do I build a Docker image for FastAPI if I manage my project with uv?
+t133|f|What is FastAPI described as in the project's main description?
+t134|f|What are the key features of FastAPI, such as speed, fewer bugs and standards-based design?
+t134|f|Which open standards is FastAPI based on?
+t135|f|Which large companies are quoted as using FastAPI for ML services or open source frameworks?
+t136|f|Who said that FastAPI is what he wanted Hug to be?
+t137|f|Which company is quoted as using FastAPI for a Virtual TAC Engineer?
+t138|f|What is Typer and how is it related to FastAPI?
+t139|f|Which libraries does FastAPI build on for the web parts and the data parts?
+t139|h|How do I install FastAPI with the standard extras in a virtual environment?
+t140|h|How do I create a minimal FastAPI app file with a root path and an items path with an optional query parameter?
+t140|c|When should I declare FastAPI endpoints with async def instead of def in the quickstart example?
+t141|h|Which command starts the FastAPI development server for main.py?
+t142|f|What does the fastapi dev command do and is auto-reload on by default?
+t142|f|Which paths and parameters does the quickstart API receive after running the example?
+t143|f|Which two interactive documentation UIs does FastAPI provide automatically and at which URLs?
+t144|h|How do I extend the quickstart FastAPI example to accept a PUT request with a request body declared via Pydantic?
+t145|h|How do I try out a PUT endpoint interactively in the Swagger UI that FastAPI generates?
+t145|f|What do you get from declaring a parameter type once in FastAPI, such as item_id as an int?
+t146|f|Which kinds of input sources does FastAPI convert to Python types, such as JSON, cookies, headers, forms and files?
+t146|f|Which output types such as datetime, UUID and database models can FastAPI convert to JSON?
+t147|c|What happens when the item_id in the path is not an int in the quickstart example?
+t147|f|Which attributes of the Item body are required and which are optional in the PUT example?
+t148|f|Which tools can use the OpenAPI schema that FastAPI generates, such as client code generators?
+t149|f|What features does the tutorial user guide cover beyond the quickstart, such as OAuth2 with JWT and GraphQL?
+t149|f|Which extra features does FastAPI inherit from Starlette, such as WebSockets and CORS?
+t150|c|How does FastAPI perform in independent TechEmpower benchmarks compared with Starlette and Uvicorn?
+t151|f|Which optional packages come with fastapi[standard], and what is each used for?
+t151|h|How do I install FastAPI without the standard optional dependencies?
+t152|f|Which extra dependency do I need to use ORJSONResponse in FastAPI?
+t152|f|Under which license is FastAPI released?
+t153|h|How can I run a dependency in a path operation when I don't need its return value?
+t154|h|How do I declare a list of dependencies in the decorator that check two custom headers?
+t155|c|Why use the decorator dependencies parameter instead of a function parameter for a dependency whose value is unused?
+t156|f|Can dependencies in the path operation decorator declare request requirements like headers or sub-dependencies?
+t157|f|Can dependencies listed in the decorator raise HTTPException the same as normal ones?
+t158|f|If a decorator dependency returns a value, is that value passed to the path operation function?
+t159|f|Where can I declare one dependencies parameter that applies to a whole group of path operations?
+t160|f|Which extra data types beyond int, float, str and bool does FastAPI support, and do I still get validation and docs for them?
+t161|f|How are datetime, date and time values represented in FastAPI requests and responses?
+t161|f|How is a timedelta represented in FastAPI requests and responses?
+t162|c|How does FastAPI treat frozenset, bytes and Decimal in requests and responses?
+t163|h|How do I declare a PUT endpoint with UUID, datetime and timedelta body parameters in FastAPI?
+t164|f|Can I do normal date arithmetic on datetime and timedelta parameters inside a FastAPI function?
+t165|f|How is the FastAPI Tutorial User Guide structured, and can I jump directly to a topic?
+t166|h|How do I run the code examples from the tutorial locally?
+t167|c|Why does the tutorial strongly encourage running and editing the examples in my own editor?
+t168|h|How do I install FastAPI in a virtual environment for the tutorial, with or without the standard extras?
+t169|f|What is the Advanced User Guide and should I read it before the Tutorial?
+t170|h|How do I add validations and metadata to a path parameter using Path in FastAPI?
+t170|f|Which FastAPI version first added support for Annotated?
+t171|f|Is a path parameter always required even if I give it a default value or None?
+t171|h|How do I declare a title for a path parameter in FastAPI?
+t172|c|Does the order of parameters matter to FastAPI when mixing query and path parameters?
+t173|h|How can I declare a required query parameter q before a path parameter that uses Path without Annotated?
+t174|h|How do I use a bare asterisk as the first parameter to force keyword arguments in a FastAPI path operation?
+t175|c|Do I still need a bare asterisk for parameter ordering when I declare Path and Query with Annotated?
+t176|h|How do I require that a path parameter is an integer greater than or equal to 1 in FastAPI?
+t177|f|Which validation arguments express greater than and less than or equal to for Path and Query?
+t178|h|How do I validate a float query parameter so that it is greater than 0 and less than 10.5?
+t178|c|Why is it important to have both gt and ge for float number validations?
+t179|f|What do Query, Path and Cookie have in common according to the recap on numeric validations?
+t179|c|Why are Query and Path actually functions that return instances of classes with the same name?
+t180|h|How do I install the dependency needed to receive form fields in FastAPI?
+t181|h|How do I import Form and use it to read username and password fields in a login endpoint?
+t182|f|Why must the OAuth2 password flow send username and password as form fields rather than JSON?
+t182|c|Why do I have to use Form explicitly instead of just declaring plain parameters for form data?
+t183|f|Which media type encodes HTML form data, and what changes when the form includes files?
+t183|c|Why can't I declare both Form fields and JSON Body fields in the same path operation?
+t184|h|How do I declare the response type of a FastAPI path operation using its return type annotation?
+t185|f|What does FastAPI do with the return type annotation, such as validating and filtering the output data?
+t185|f|What happens if my function returns invalid data that doesn't match the declared return type?
+t186|c|When should I use the response_model parameter in the decorator rather than the return type annotation?
+t187|h|How do I return a dict from a function but document and validate it as a Pydantic model using response_model?
+t188|f|Is response_model a parameter of the path operation function or of the decorator?
+t188|h|How can I satisfy strict type checkers like mypy when using response_model?
+t189|c|Which takes priority when both a return type and response_model are declared?
+t189|h|How do I disable response model creation for a single path operation?
+t190|f|What is the danger of using the same UserIn model that contains a plaintext password for the response?
+t190|h|Which package is needed to use EmailStr in a Pydantic model for FastAPI?
+t191|c|Why is returning the same input model with a password to every client a security problem?
+t192|h|How do I create separate input and output models so that the password is not returned from a user creation endpoint?
+t193|f|Which model is passed as response_model to hide the password when the function returns the input user?
+t194|c|Why must the response_model parameter be used when the input and output classes differ?
+t195|c|How can inheritance give me both editor type support and data filtering for response models?
+t196|h|How do I use a BaseUser class and a UserIn subclass to filter out the password through the return type?
+t197|f|Why won't mypy complain when a function annotated to return BaseUser returns a UserIn instance?
+t197|f|How does FastAPI ensure the filtering of returned data does not follow the class inheritance rules?
+t198|f|What return type should I annotate when I return a Response directly from a path operation?
+t199|f|Does annotating a path operation with a Response subclass like RedirectResponse work in FastAPI?
+t200|f|Why does annotating a union of Response and dict fail in FastAPI?
+t201|h|How do I keep a union return type annotation like Response or dict without FastAPI trying to build a response model?
+t202|h|How can I leave out default values from the JSON response in FastAPI?
+t203|f|Which decorator parameter omits values that were not actually set when returning a model?
+t204|h|How do I use response_model_exclude_unset so that only the values actually set are returned?
+t205|f|Which other decorator parameters besides exclude_unset can drop default or None values from the response?
+t205|f|Which Pydantic v2 method replaces dict for model serialization?
+t206|c|If the stored data sets a field to the same value as its default, is it included when response_model_exclude_unset is True?
+t207|h|How do I include or exclude specific attributes of a response model with a set of names?
+t207|c|Why is it recommended to use several model classes instead of response_model_include and response_model_exclude?
+t208|h|How can I expose only name and description in one endpoint and hide the tax in another using the same Item model?
+t209|f|Does FastAPI accept a list or tuple instead of a set for response_model_include?
+t210|f|Does FastAPI still work if I pass a list or tuple for response_model_include instead of a set?
+t211|f|Why use OAuth2 in FastAPI so a frontend in another domain or a mobile app can authenticate with a username and password?
+t212|h|How do I create a minimal FastAPI file that uses OAuth2PasswordBearer to get a token in a path operation?
+t213|f|Why is python-multipart required for the OAuth2 security examples, and when is it installed automatically?
+t214|f|What does the Authorize button in the interactive docs show after adding OAuth2PasswordBearer?
+t215|c|What is the OAuth2 password flow and why does the same FastAPI application handle both the API and authentication in the tutorial?
+t216|f|What is a token in the OAuth2 password flow and why does it normally expire?
+t217|c|Why does the tutorial choose a Bearer token with the OAuth2 Password flow?
+t218|f|What does tokenUrl="token" refer to in OAuth2PasswordBearer, and why is it a relative URL?
+t219|c|Does the tokenUrl parameter in OAuth2PasswordBearer actually create the token endpoint?
+t220|h|How do I use the oauth2_scheme dependency to receive the token as a string in a path operation?
+t221|f|What does OAuth2PasswordBearer return when the Authorization header is missing or does not contain a Bearer token?
+t221|f|Which base class do FastAPI security utilities inherit from to integrate with OpenAPI?
+t222|h|How do I serve static files from a directory in FastAPI with StaticFiles?
+t223|f|What do the path, directory and name arguments mean when mounting StaticFiles?
+t224|c|What do the terms serialize and dump mean in Pydantic compared with their general meaning?
+t225|f|What is the primary way to convert a Pydantic model into a dictionary, and how are sub-models handled?
+t225|h|How can I make model_dump return only JSON serializable types?
+t226|h|How do I include only certain fields when dumping a Pydantic model to a dictionary?
+t227|h|How can I exclude fields that were not set or that equal their defaults when calling model_dump?
+t228|f|What does the round_trip argument of model_dump do with Json fields?
+t229|f|What does model_dump_json return and which types can it serialize that json.dumps cannot?
+t230|h|How do I serialize a Pydantic model with a datetime field to indented JSON?
+t231|c|How does dict(model) differ from model_dump when a model contains sub-models?
+t232|f|Which decorators and classes does Pydantic provide for custom serialization of fields and models?
+t233|h|How do I serialize a datetime field as a timestamp with a field_serializer in Pydantic?
+t234|f|What do the return_type and when_used arguments of PlainSerializer and WrapSerializer do?
+t234|h|How can one serializer be applied to all fields of a Pydantic model?
+t235|h|How do I use PlainSerializer to format an integer as a string with thousands separators only in JSON mode?
+t236|c|How does WrapSerializer differ from PlainSerializer?
+t237|h|How can a model_serializer make model_dump return something other than a dict?
+t238|h|How do I keep correct type checking when model_serializer changes the return type of model_dump?
+t239|f|How are subclasses of standard types like date serialized in Pydantic?
+t240|c|When a field is annotated with a BaseModel, are the extra fields of a subclass instance included in the dump?
+t241|c|Why did Pydantic V2 change serialization of subclass fields compared with V1, and how does it help with secrets?
+t242|h|How can I get v1-style duck-typing serialization of subclasses in Pydantic?
+t243|h|How do I use the SerializeAsAny annotation so that a field includes the subclass password?
+t244|f|Which methods accept the serialize_as_any flag in Pydantic?
+t245|f|Why might I want the serialized output to contain only the fields of the original annotated type?
+t246|h|How do I dump a model with serialize_as_any set to True versus False and compare the output?
+t247|c|What is the default value of serialize_as_any in Pydantic V2, and which version does True match?
+t248|f|Does serialize_as_any also apply to nested and recursive models like a list of friends?
+t249|c|How does the serialize_as_any runtime flag differ from the SerializeAsAny annotation?
+t250|h|How can I make duck-typing serialization the default for all my models by overriding model_dump?
+t251|f|Do Pydantic models support pickling and unpickling?
+t252|h|How do I use nested include and exclude with model_dump to select fields from sub-models?
+t253|h|How do I exclude a field from every member of a list of sub-models in model_dump?
+t254|h|How do I exclude specific fields from a hobbies list by index in a Pydantic user model?
+t255|f|How do include keys with True and nested sets pick fields in model_dump?
+t256|f|Can model-level and field-level include and exclude be combined with the dump arguments?
+t257|c|Which takes priority, Field(exclude=True) or the exclude and include arguments of model_dump?
+t258|f|What do exclude_none, exclude_unset and exclude_defaults each remove from the dump of a Person model?
+t259|f|What is the serialization context in Pydantic and how can serializers access it?
+t260|h|How do I pass a context object to model_dump and read it inside a field_serializer, for example to strip stopwords?
+t261|h|How do I duplicate a Pydantic model while changing one field using model_copy?
+t261|f|Why is model_copy particularly useful for frozen models?
+t262|f|By default does Pydantic coerce the string "123" into an int, and why can this be undesirable?
+t263|c|What is the difference between lax and strict validation of the string '123' for an int field in Pydantic?
+t264|f|What are the different ways to turn on strict mode in Pydantic?
+t265|c|Why are JSON inputs treated more loosely than Python inputs in Pydantic strict mode, for example for UUID strings?
+t266|f|Can a UUID string be validated in strict mode when parsing from JSON but not from a Python dict?
+t267|f|Where can I check which input types are accepted in strict mode?
+t268|h|How do I validate a single value strictly with TypeAdapter and strict=True?
+t269|f|Does strict mode with TypeAdapter work for dataclasses and require an instance of the dataclass?
+t270|h|How can I strictly validate a JSON list of integers with TypeAdapter and see which items fail?
+t271|c|In strict mode from JSON, which values still fail and which pass, such as an int field given a string versus a UUID given a string?
+t272|h|How do I make only specific fields validate strictly in a Pydantic model using Field(strict=True)?
+t273|f|Does Field(strict=True) also affect validation when the model class is instantiated directly?
+t274|h|How do I use Field(strict=True) inside Annotated on a TypedDict field?
+t275|h|How do I mark a boolean field as strict using Annotated and Strict?
+t276|h|How do I enable strict mode for all fields of a model with ConfigDict?
+t277|c|Is strict mode from model_config applied recursively to nested model fields, and how do I override one field?
+t278|h|How do I make strict mode apply to nested models by using a shared base class with strict configuration?
+t279|h|How do I enable strict mode for Pydantic dataclasses and nested vanilla dataclasses or TypedDict?
+t280|h|How do I set strict mode for an inner TypedDict using the pydantic config attribute?
+t281|h|How do I get strict validation with TypeAdapter by passing a config?
+t282|h|How do I use strict mode with the validate_call decorator?
+t283|f|What is TypeAdapter used for when I want to validate data against types that are not BaseModels?
+t284|h|How do I validate a list of TypedDict users with a TypeAdapter?
+t285|c|Why does TypeAdapter dump_json return bytes while model_dump_json returns a string?
+t286|h|How do I parse arbitrary data into a list of models using TypeAdapter instead of BaseModel.model_validate?
+t287|c|Why should I create a TypeAdapter only once and reuse it instead of creating it in a loop?
+t288|f|What does deferred schema building and rebuilding of a TypeAdapter help with, and from which Pydantic version?
+t289|c|How is validating a Union different from validating other types in Pydantic?
+t290|f|Which union mode should I use when I need guarantees about the order of validation attempts?
+t291|f|Why is union_mode left_to_right not the default in Pydantic 2, and what is the default?
+t292|h|How do I enable left_to_right union mode on a Union field with Field?
+t293|c|How does the order of members in left_to_right mode change the result when validating a numeric string against int and str?
+t294|c|Can Pydantic change the smart union matching algorithm between minor releases?
+t295|f|How does Pydantic score exactness of a union member match, for example an int input to a float or int union?
+t296|f|When validating the string '1234' against a union of int, str and UUID, which member is chosen in smart mode?
+t297|c|Why are discriminated unions more efficient and give better errors than plain unions?
+t298|h|How do I declare a discriminated union of Cat, Dog and Lizard using a Literal pet_type field?
+t299|c|When should I use a callable Discriminator instead of a field name for a discriminated union?
+t300|h|How do I write a callable discriminator that handles both dict and model inputs for different pie fillings?
+t301|f|What happens when validating a dessert dict that has a filling key against a union of ApplePie and PumpkinPie with a callable discriminator?
+t302|h|How do I use Tag with a callable discriminator to distinguish an int from a model?
+t303|f|What error is raised when a callable discriminator returns None?
+t304|f|Why can't a discriminated union have only a single variant like Union[Cat]?
+t305|h|How do I nest one discriminated union inside another, such as cat colors inside pet types?
+t306|f|What error message does Pydantic show when a nested discriminator tag like color red does not match any expected tag?
+t307|h|How do I validate data against a nested discriminated union with a TypeAdapter?
+t308|c|Why do validation error messages for plain unions get verbose, and how do discriminated unions simplify them?
+t309|f|How verbose are the errors for a recursive Union[str, Model] model?
+t310|f|What do the repeated validation errors look like for deeply nested recursive union data?
+t311|h|How do I customize the error type, message and context of a discriminated union in Pydantic?
+t312|f|What do custom_error_type and custom_error_message set in a Pydantic Discriminator?
+t313|h|How can Tag be used to make union validation errors easier to read when no discriminator exists?
+t314|f|How do union validation errors name each branch when members are annotated with a Tag?
+t315|f|What does the validate_call decorator do before a function is called?
+t316|c|Are arguments coerced by the validate_call decorator, and what types are inferred for unannotated parameters?
+t317|h|How do I make validate_call also validate the return value of a function?
+t318|f|Which kinds of function parameters does validate_call support, such as positional-only, keyword-only and variadic ones?
+t319|h|How do I declare positional-only and keyword-only parameters in a function decorated with validate_call?
+t320|f|How does validate_call handle *args and **kwargs with typed variadic parameters?
+t321|h|How do I annotate keyword arguments with a TypedDict using Unpack under validate_call?
+t322|h|How do I add constraints to function parameters with Field when using validate_call?
+t323|h|How do I use an alias together with a gt constraint on a validated function argument?
+t324|h|How can I call the undecorated original function after using validate_call?
+t325|f|Does validate_call work with async functions?
+t326|f|What validation error does an async function raise when the id is not a positive integer?
+t327|c|Why do type checkers not recognize raw_function on a function decorated with validate_call?
+t328|h|How do I pass a custom configuration like arbitrary_types_allowed to validate_call?
+t329|h|How can I validate a function's arguments separately from calling an expensive function?
+t330|c|Which exception is raised for a missing required argument with validate_call instead of Python's TypeError?
+t331|c|Should my validators raise ValidationError directly or raise ValueError or AssertionError?
+t332|f|In which ways can I access the errors held in a Pydantic ValidationError?
+t333|f|What properties does the ErrorDetails dictionary contain, such as ctx, loc, msg and type?
+t334|h|How do I build a model with several failing fields to see how Pydantic reports every error?
+t335|f|What does the readable error output look like for a missing field, a failed gt constraint and a bad list element?
+t336|f|What does errors() return for a missing field, including loc, msg, input and url?
+t337|f|How is a custom ValueError from an after validator represented in the error details?
+t338|f|Where can I find Pydantic's default validation error messages and usage errors?
+t338|h|How can I customize Pydantic error messages?
+t339|h|How do I replace default error messages for int_parsing and url_scheme with custom text?
+t340|f|What does the customized error output look like for a wrongly typed int and a bad URL scheme?
+t341|h|How do I turn error locations into dotted paths like items[1].value for readable messages?
+t342|f|What does errors() show for a missing nested value in a list of items?
+t343|f|Which web frameworks and libraries is Pydantic used with, such as FastAPI and HTTPX?
+t343|h|How can I validate JSON data from an HTTP API response with a Pydantic model using httpx?
+t344|h|How do I validate a list of users returned by an API with TypeAdapter?
+t345|f|What are Pydantic's dependencies and which Python version does it require?
+t346|h|How do I install Pydantic with email validation and the timezone extra?
+t347|h|How can I install the latest Pydantic directly from the GitHub repository?
+t348|f|Which approaches are used to bring Python libraries into AWS Lambda functions?
+t349|c|Why can pip-installed wheels fail in AWS Lambda when built in a local virtual environment?
+t350|h|How do I debug the error no module named pydantic_core._pydantic_core on AWS Lambda?
+t351|h|How can I check that my Lambda Python version matches the compiled pydantic-core library?
+t352|f|Which mismatches in OS or CPU architecture commonly cause the pydantic_core import error on Lambda?
+t353|h|How do I fix the missing package metadata error for email-validator when deploying with the serverless framework?
+t354|f|Where can I read about validating AWS Lambda event and context data with Pydantic?
+t355|f|Which data sources can datamodel-code-generator turn into Pydantic models?
+t356|h|How do I generate Pydantic models from a JSON Schema file with datamodel-codegen?
+t357|f|What does the person.json schema example define for first name, last name and age?
+t358|f|What do the generated Pydantic Person and Pet classes look like?
+t359|h|How can I cross-reference Pydantic API docs from my Sphinx project using intersphinx?
+t360|f|What is Pydantic Logfire and what does its Pydantic integration offer?
+t361|h|How do I log a validated Pydantic model with Logfire?
+t362|h|How do I automatically record validation details with logfire.instrument_pydantic?
+t363|f|Does Pydantic work with mypy without any configuration, and what does the mypy plugin add?
+t364|c|What mistakes does mypy miss without the Pydantic plugin, such as an unannotated model field?
+t365|f|How does the Pydantic mypy plugin help when refactoring models?
+t366|h|How do I enable the Pydantic mypy plugin in a mypy config file?
+t367|f|Which mypy versions does the Pydantic plugin support?
+t368|f|How does the mypy plugin generate the __init__ signature for required fields and aliases?
+t369|f|What static checks does the mypy plugin make for field default and default_factory and untyped fields?
+t370|h|How do I configure the pydantic-mypy plugin settings and strictness flags?
+t371|c|Why does the mypy plugin use Any for field annotations in the synthesized __init__ unless init_typed is set?
+t372|f|Which two plugin options must be enabled to avoid errors from disallow_any_explicit with the synthesized __init__?
+t373|f|How long has Pydantic existed and how widely is it used?
+t374|c|Why does using Python type hints as the schema help Pydantic integrate with mypy, Pyright and IDEs?
+t375|h|How do I use Literal and Annotated with annotated-types to constrain a Pydantic field value?
+t376|c|Why is Pydantic validation fast, and how does it compare with hand-written validation code?
+t377|f|How does the benchmark compare Pydantic with pure Python code when parsing the GitHub emojis JSON and validating URLs?
+t378|f|What timing does Pydantic's validate_json reach on the emoji data benchmark compared to pure Python?
+t379|f|In which three ways can Pydantic serialize a model?
+t380|h|How do I serialize a Meeting model while excluding unset fields?
+t381|h|How do I generate a JSON Schema for a Pydantic model that contains a nested Address model?
+t382|f|Which JSON Schema specification version does Pydantic follow and which OpenAPI version is it compatible with?
+t383|c|Why would strict mode be useless for validating JSON without special handling, and what is Pydantic's default coercion?
+t384|c|How does validating a Meeting model with strict=True differ from lax mode for the where field?
+t385|f|Which four ways does Pydantic offer to create schemas, such as BaseModel and dataclasses?
+t386|h|How do I validate and serialize a TypedDict with TypeAdapter and get its JSON Schema?
+t387|f|Can a TypeAdapter for a TypedDict validate JSON directly and dump_json?
+t388|f|What are wrap validators in Pydantic V2 and why are they powerful for customisation?
+t389|h|How do I write a wrap field validator that accepts the string 'now' for a datetime field?
+t390|f|How many repositories and PyPI packages depend on Pydantic according to the docs?
+t391|f|What criteria are used to list companies and organisations that use Pydantic?
+t392|f|What is the Starlette application class and what does it tie together?
+t393|h|How do I store arbitrary state on a Starlette application instance with app.state?
+t394|f|What are HTTPEndpoint and WebSocketEndpoint in Starlette used for?
+t395|h|How do I route to an HTTPEndpoint class in a Starlette app without passing an instance?
+t396|f|Which encodings can a WebSocketEndpoint use and which overridable methods does it have?
+t397|h|How do I write a WebSocketEndpoint that echoes bytes using on_connect, on_receive and on_disconnect?
+t399|h|How do I build a Starlette websocket echo chat page using HTTPEndpoint and WebSocketEndpoint in one app?
+t400|f|What does Starlette provide as a lightweight ASGI framework or toolkit?
+t401|h|How do I install Starlette and which ASGI server do I also need?
+t402|h|How do I write and run the smallest Starlette app that returns a JSON hello world?
+t403|f|Which optional dependencies does Starlette need for TestClient, Jinja2 templates and session middleware?
+t404|c|How can I use Starlette as an ASGI toolkit without the full framework?
+t405|f|Why is Starlette designed to be modular and what does this enable for middleware?
+t406|h|How do I define a routing table of Route objects in a Starlette application?
+t407|f|Which path convertors does Starlette provide, such as int, float, uuid and path?
+t408|h|How do I create and register a custom datetime path convertor in Starlette?
+t409|h|How do I read path parameters from the request in a Starlette endpoint?
+t410|h|How do I allow both GET and POST requests on a Starlette route?
+t410|f|Which HTTP methods do function endpoints in Starlette accept by default?
+t411|h|How do I group routes under a common path prefix with Mount in Starlette?
+t412|h|How can I generate a URL for a named route with request.url_for in Starlette?
+t413|h|How do I reverse a URL for routes inside a named Mount using the prefix and name syntax?
+t414|h|How can I look up a URL path without a request instance using app.url_path_for?
+t415|c|How does Starlette handle the port in the Host header when doing host-based routing?
+t416|h|How do I attach Host-based routers for different subdomains to a Starlette application?
+t417|h|How can host parameters like subdomain be used in Starlette URL lookups?
+t418|c|Why must more specific routes like /users/me be listed before /users/{username} in Starlette?
+t419|f|When would I use a plain Router instance instead of a Starlette application?
+t420|h|How do I define a WebSocket route in Starlette?
+t421|f|How does Starlette generate an OpenAPI schema from application routes and endpoint docstrings?
+t422|h|How do I use SchemaGenerator with YAML docstrings on endpoints to describe responses?
+t423|h|How can I expose an OpenAPI schema endpoint and get the schema programmatically in Starlette?
+t424|h|How do I print the generated API schema from a command line script in a Starlette example?

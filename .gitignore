@@ -9,14 +9,16 @@ venv/
 # Secrets
 .env
 
-# Data and model artifacts (large / regenerable)
-data/*
-!data/.gitkeep
+# Large / regenerable artifacts. Small data files that define the results ARE tracked:
+#   data/processed/chunks.jsonl, data/synthetic/*.jsonl|tsv, data/triplets/*.jsonl, data/rag/*
+data/raw/
+data/processed/sample_chunks.md
 models/
 checkpoints/
 *.faiss
 *.safetensors
 *.bin
+*.zip
 
 # Tracking
 wandb/
