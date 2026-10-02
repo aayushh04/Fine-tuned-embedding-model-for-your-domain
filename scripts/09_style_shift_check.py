@@ -8,7 +8,7 @@ scores the models on Qwen-written questions for the SAME unseen test chunks (gen
 If fine-tuning helps on the Qwen-written test questions but not on the Claude-written ones, the model learned the
 generator's question style rather than only the domain.
 
-Writes results/style_shift.csv and results/tables/style_shift.md
+Writes results/style_shift_<model>.csv and results/tables/style_shift_<model>.md
 Usage: python scripts/09_style_shift_check.py --runs bge-small_hn_100_s42 bge-small_hn_100_s43 ...
 """
 from __future__ import annotations
@@ -58,14 +58,17 @@ def main() -> None:
     mcfg = cfg["models"][args.model]
     chunks = load_chunks(cfg)
 
+    filter_name = cfg["synthetic"]["filter_model"]
+    filter_model = load_model(cfg["models"][filter_name])
+    qwen_q = filtered_qwen_test_questions(cfg, chunks, filter_model)   # same question set for every tested model
+    del filter_model
     base = load_model(mcfg)
-    qwen_q = filtered_qwen_test_questions(cfg, chunks, base)
     claude_q = [q for q in load_questions(cfg) if q["split"] == "test"]
     qsets = {"claude_written": claude_q, "qwen_written": qwen_q}
     print({k: len(v) for k, v in qsets.items()}, "test questions")
     settings = [(q, "test", "split") for q in qsets]
 
-    out_csv = cfg["paths"]["results_dir"] / "style_shift.csv"
+    out_csv = cfg["paths"]["results_dir"] / f"style_shift_{args.model}.csv"
     out_csv.unlink(missing_ok=True)
     per_model = {"base": eval_all(base, chunks, qsets, mcfg["query_prefix"], settings)}
     del base
@@ -91,7 +94,7 @@ def main() -> None:
         r1b, r1f = b.metrics["recall@1"], np.mean([f.metrics["recall@1"] for f in fts])
         lines.append(f"| {qset} | {len(diff)} | {b.metrics['ndcg@10']:.3f} | {ft_nd.mean():.3f} | {diff.mean():+.3f} | "
                      f"[{lo:+.3f}, {hi:+.3f}] | {r1b:.3f} | {r1f:.3f} | {r1f - r1b:+.3f} |")
-    (cfg["paths"]["results_dir"] / "tables" / "style_shift.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (cfg["paths"]["results_dir"] / "tables" / f"style_shift_{args.model}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
 
 

@@ -1,0 +1,202 @@
+{
+ "r00": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r01": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r02": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r03": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r04": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r05": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r06": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r07": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r08": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r09": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r10": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r11": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r12": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r13": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r14": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r15": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r16": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r17": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r18": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r19": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r20": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r21": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r22": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r23": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r24": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r25": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r26": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r27": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r28": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r29": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r30": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r31": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r32": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r33": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r34": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r35": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r36": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r37": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r38": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r39": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r40": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r41": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r42": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r43": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r44": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r45": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r46": {
+  "X": "base",
+  "Y": "finetuned"
+ },
+ "r47": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r48": {
+  "X": "finetuned",
+  "Y": "base"
+ },
+ "r49": {
+  "X": "finetuned",
+  "Y": "base"
+ }
+}

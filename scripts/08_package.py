@@ -37,7 +37,7 @@ base_model: {hf_name}
 
 # {title}
 
-A **{base_model}** embedding model fine-tuned for retrieval over the documentation of **FastAPI, Pydantic and Starlette**.
+An **{base_model}** embedding model fine-tuned for retrieval over the documentation of **FastAPI, Pydantic and Starlette**.
 It maps questions and documentation passages to {dim}-dimensional vectors (cosine similarity).
 
 On held-out documents (never seen in training) it improves nDCG@10 from **{base_ndcg}** to **{ft_ndcg}** and
@@ -68,7 +68,7 @@ print(q @ docs.T)
 
 ## Training
 
-`MultipleNegativesRankingLoss` on (question, positive, hard negative) triplets, {epochs} epochs max with the best epoch kept by
+`MultipleNegativesRankingLoss` (computed with gradient caching, mini-batch 8) on (question, positive, hard negative) triplets, {epochs} epochs max with the best epoch kept by
 validation nDCG@10 (best here: epoch {best_epoch}), learning rate {lr}, batch size {batch_size}, 10% warm-up, fp32, seed {seed}, no duplicate chunks per batch.
 
 ## Evaluation
@@ -78,7 +78,11 @@ Index = the test chunks only (held-out corpus).
 
 {results_table}
 
-Mean ± std over {n_seeds} training seeds for the fine-tuned rows. Details, ablations (hard negatives, data size, second base model),
+{seed_note}
+
+{context_note}
+
+Details, ablations (hard negatives, data size, second base model),
 the forgetting check and an end-to-end RAG evaluation are in the project README: {repo_url}
 
 ## Limitations
@@ -114,7 +118,18 @@ def main() -> None:
     cols = ["recall@1", "recall@5", "recall@10", "mrr@10", "ndcg@10"]
     table = "| model | " + " | ".join(cols) + " |\n|---|" + "---|" * len(cols) + "\n"
     table += f"| {args.model} (off the shelf) | " + " | ".join(f"{b[c]:.3f}" for c in cols) + " |\n"
-    table += f"| **this model** | " + " | ".join(f"{sel[f'test_split_{c}'].mean():.3f} ± {sel[f'test_split_{c}'].std(ddof=1):.3f}" for c in cols) + " |\n"
+    if len(sel) > 1:
+        fmt = lambda c: f"{sel[f'test_split_{c}'].mean():.3f} ± {sel[f'test_split_{c}'].std(ddof=1):.3f}"
+    else:
+        fmt = lambda c: f"{sel[f'test_split_{c}'].iloc[0]:.3f}"
+    table += "| **this model** | " + " | ".join(fmt(c) for c in cols) + " |\n"
+    ref = base[(base.model == "bge-small") & (base.split == "test") & (base.corpus == "split") & (base.qset == "filtered")].iloc[0]
+    table += "| bge-small (off the shelf, for reference) | " + " | ".join(f"{ref[c]:.3f}" for c in cols) + " |\n"
+    seed_note = f"Mean ± std over {len(sel)} training seeds." if len(sel) > 1 else f"Single training run (seed {int(run.seed)})."
+    context_note = ("**Reading the table honestly:** this fine-tune brings a small, fast model most of the way to the stronger "
+                    "off-the-shelf bge-small on this domain; it does not beat it. Fine-tuning bge-small itself on the same data "
+                    "did not improve its score on the Claude-written test questions (it improved on validation questions written "
+                    "like the training data), so the gain is largest for weaker base models.")
     card = CARD.format(
         hf_name=mcfg["hf_name"], base_model=mcfg["hf_name"].split("/")[-1], title=args.repo_id.split("/")[-1],
         dim=384, repo_id=args.repo_id, repo_url=args.repo_url, query_prefix=mcfg["query_prefix"],
@@ -122,7 +137,7 @@ def main() -> None:
         base_r1=f"{b['recall@1']:.3f}", ft_r1=f"{sel['test_split_recall@1'].mean():.3f}",
         n_chunks=2046, n_train_q=int(run.n_train_examples), n_test_q=int(b.n_queries), epochs=int(run.epochs_max),
         best_epoch=int(run.best_epoch), lr=run.lr, batch_size=int(run.batch_size), seed=int(run.seed),
-        results_table=table, n_seeds=len(sel))
+        results_table=table, seed_note=seed_note, context_note=context_note)
     model_dir = cfg["paths"]["models_dir"] / run.run / "final"
     (model_dir / "README.md").write_text(card, encoding="utf-8")
     (res.parent / "MODEL_CARD.md").write_text(card, encoding="utf-8")

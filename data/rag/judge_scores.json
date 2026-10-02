@@ -1,0 +1,502 @@
+{
+ "r00": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r01": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r02": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 0
+  }
+ },
+ "r03": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r04": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r05": {
+  "X": {
+   "correct": 1,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 1
+  }
+ },
+ "r06": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r07": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r08": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r09": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r10": {
+  "X": {
+   "correct": 1,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 1
+  }
+ },
+ "r11": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r12": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 0
+  }
+ },
+ "r13": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r14": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r15": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r16": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r17": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r18": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r19": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r20": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r21": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r22": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r23": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r24": {
+  "X": {
+   "correct": 0,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r25": {
+  "X": {
+   "correct": 0,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r26": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 0
+  }
+ },
+ "r27": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r28": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r29": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r30": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r31": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r32": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r33": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r34": {
+  "X": {
+   "correct": 2,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r35": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r36": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r37": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r38": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r39": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 2,
+   "halluc": 0
+  }
+ },
+ "r40": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r41": {
+  "X": {
+   "correct": 1,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 1
+  }
+ },
+ "r42": {
+  "X": {
+   "correct": 1,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r43": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r44": {
+  "X": {
+   "correct": 0,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 1
+  }
+ },
+ "r45": {
+  "X": {
+   "correct": 2,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 0
+  }
+ },
+ "r46": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 1
+  }
+ },
+ "r47": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ },
+ "r48": {
+  "X": {
+   "correct": 0,
+   "halluc": 1
+  },
+  "Y": {
+   "correct": 0,
+   "halluc": 0
+  }
+ },
+ "r49": {
+  "X": {
+   "correct": 1,
+   "halluc": 0
+  },
+  "Y": {
+   "correct": 1,
+   "halluc": 0
+  }
+ }
+}

@@ -182,27 +182,37 @@ def make_figures(base: pd.DataFrame, runs: pd.DataFrame, fts: list[str], curve: 
             ax.set_title(m, loc="left", fontsize=11, color=INK)
             ax.grid(axis="x", visible=False)
         axes[0][0].set_ylabel("score (test set)")
-        axes[0][0].legend(frameon=False, loc="lower right")
+        handles, labels = axes[0][0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc="upper right", ncol=2, frameon=False, bbox_to_anchor=(0.99, 0.99))
         fig.suptitle("Retrieval on held-out documents: off the shelf vs fine-tuned", x=0.01, ha="left", fontsize=12)
-        fig.tight_layout()
+        fig.tight_layout(rect=(0, 0, 1, 0.94))
         fig.savefig(figs / "base_vs_finetuned.png", dpi=160)
         plt.close(fig)
 
-    # Figure 2: training-data size (bge-small), mean +/- std band vs off-the-shelf line
+    # Figure 2: training-data size, validation (same style as training) vs test (different author), bge-small
     if curve:
-        fig, ax = plt.subplots(figsize=(5.8, 3.8))
+        fig, ax = plt.subplots(figsize=(6.4, 4.0))
         xs = sorted(curve)
-        mu = np.array([curve[f].mean() for f in xs])
-        sd = np.array([curve[f].std(ddof=1) if len(curve[f]) > 1 else 0 for f in xs])
-        ax.plot([f * 100 for f in xs], mu, color=BLUE, lw=2, marker="o", ms=7, label="Fine-tuned (hard negatives)")
-        ax.fill_between([f * 100 for f in xs], mu - sd, mu + sd, color=BLUE, alpha=0.15, lw=0)
-        b = base_row(base, "bge-small")["ndcg@10"]
-        ax.axhline(b, color=ORANGE, lw=2, ls=(0, (5, 3)), label="Off the shelf")
-        ax.set_xticks([25, 50, 100], ["25%", "50%", "100%"])
+        b_val, b_test = base_row(base, "bge-small", split="val")["ndcg@10"], base_row(base, "bge-small")["ndcg@10"]
+        val_mu, test_mu = [b_val], [b_test]
+        for f in xs:
+            r = runs_for(runs, "bge-small", True, f)
+            val_mu.append(r["val_split_ndcg@10"].astype(float).mean())
+            test_mu.append(r["test_split_ndcg@10"].astype(float).mean())
+        px = [0] + [f * 100 for f in xs]
+        ax.plot(px, val_mu, color=BLUE, lw=2, marker="o", ms=7, label="Validation (same question style as training)")
+        ax.plot(px, test_mu, color=ORANGE, lw=2, marker="o", ms=7, label="Test (questions written by a different author)")
+        ax.text(px[-1] + 2, val_mu[-1], f"{val_mu[-1]:.3f}", va="center", fontsize=9, color=INK2)
+        ax.text(px[-1] + 2, test_mu[-1], f"{test_mu[-1]:.3f}", va="center", fontsize=9, color=INK2)
+        ax.text(px[0] - 2, val_mu[0], f"{val_mu[0]:.3f}", va="center", ha="right", fontsize=9, color=INK2)
+        ax.text(px[0] - 2, test_mu[0], f"{test_mu[0]:.3f}", va="center", ha="right", fontsize=9, color=INK2)
+        ax.set_xticks(px, ["0% (base)", "25%", "50%", "100%"])
+        ax.set_xlim(-14, 115)
+        ax.set_ylim(0.76, 0.88)
         ax.set_xlabel("share of training questions used")
-        ax.set_ylabel("nDCG@10 (test)")
-        ax.set_title("bge-small: more training data", loc="left", fontsize=11)
-        ax.legend(frameon=False, loc="lower right")
+        ax.set_ylabel("nDCG@10")
+        ax.set_title("bge-small: gains show up on validation, not on test", loc="left", fontsize=11)
+        ax.legend(frameon=False, loc="lower right", fontsize=8.5)
         fig.tight_layout()
         fig.savefig(figs / "data_size.png", dpi=160)
         plt.close(fig)
