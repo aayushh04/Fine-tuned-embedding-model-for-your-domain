@@ -90,12 +90,14 @@ def main() -> None:
     parser.add_argument("--config", default=DEFAULT_CONFIG)
     parser.add_argument("--splits", nargs="+", default=["train", "val"])
     parser.add_argument("--limit", type=int, default=None, help="debug: only N chunks")
+    parser.add_argument("--out", default="raw_questions_local.jsonl",
+                        help="output file name in data/synthetic (use a separate file for the style-shift check)")
     args = parser.parse_args()
     cfg = load_config(args.config)
     scfg = cfg["synthetic"]
     set_seed(cfg["seed"])
 
-    out_path = cfg["paths"]["synthetic_dir"] / "raw_questions_local.jsonl"
+    out_path = cfg["paths"]["synthetic_dir"] / args.out
     out_path.parent.mkdir(parents=True, exist_ok=True)
     done = {r["chunk_id"] for r in read_jsonl(out_path)} if out_path.exists() else set()
 

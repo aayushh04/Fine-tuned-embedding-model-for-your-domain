@@ -8,6 +8,8 @@ $logs = [ordered]@{
     "mining bge-small"    = "mine_bge.log"
     "mining minilm"       = "mine_minilm.log"
     "training (all runs)" = "train_all.log"
+    "style-shift gen"     = "style_gen.log"
+    "style-shift check"   = "style_shift.log"
     "forgetting check"    = "forgetting.log"
     "RAG run"             = "rag.log"
 }
